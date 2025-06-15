@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro - Ajuda.ai</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <style>
+        :root {
+            --primary-color: #6366f1;
+            --secondary-color: #8b5cf6;
+            --accent-color: #06b6d4;
+            --success-color: #10b981;
+            --danger-color: #ef4444;
+            --text-primary: #1e293b;
+            --text-secondary: #64748b;
+            --border-color: #e2e8f0;
+            --bg-white: #fff;
+            --input-bg: #f3f4f6;
+            --shadow-md: 0 4px 12px 0 rgb(99 102 241 / 0.07);
+        }
+
+        html,
+        body {
+            height: 100%;
+            background: var(--bg-white);
+        }
+
+        body {
+            min-height: 100vh;
+            font-family: 'Inter', sans-serif;
+            color: var(--text-primary);
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar {
+            background: var(--bg-white);
+            border-bottom: 1px solid var(--border-color);
+            box-shadow: 0 2px 8px 0 rgba(99, 102, 241, 0.03);
+            padding: 1.2rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.7rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: var(--text-primary);
+            font-weight: 500;
+            padding: 0.3rem 0.6rem;
+            border-radius: 6px;
+            transition: background 0.2s, color 0.2s;
+        }
+
+        .register-main {
+            min-height: 100vh;
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            padding: 3rem 0 2rem 0;
+            background: var(--bg-white);
+        }
+
+        .register-form-wrapper {
+            width: 100%;
+            max-width: 480px;
+            margin: 0 auto;
+            padding: 2.5rem 2rem 2rem 2rem;
+            border-radius: 24px;
+            box-shadow: var(--shadow-md);
+            background: var(--bg-white);
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .register-title {
+            font-size: 2.3rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-align: center;
+            margin-bottom: 0.5rem;
+            letter-spacing: -1px;
+        }
+
+        .register-desc {
+            text-align: center;
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            font-size: 1.05rem;
+        }
+
+        .register-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.4rem;
+        }
+
+        .form-group {
+            position: relative;
+            margin-bottom: 0.5rem;
+        }
+
+        .form-label {
+            position: absolute;
+            left: 1.1rem;
+            top: 1.1rem;
+            color: var(--text-secondary);
+            font-size: 1rem;
+            pointer-events: none;
+            background: var(--bg-white);
+            padding: 0 0.3rem;
+            transition: 0.2s;
+            z-index: 2;
+        }
+
+        .form-input:focus+.form-label,
+        .form-input:not(:placeholder-shown)+.form-label,
+        .form-input[type="file"]:valid+.form-label,
+        .form-textarea:focus+.form-label,
+        .form-textarea:not(:placeholder-shown)+.form-label {
+            top: -0.7rem;
+            left: 0.8rem;
+            font-size: 0.85rem;
+            color: var(--primary-color);
+            background: var(--bg-white);
+        }
+
+        .form-input,
+        .form-select,
+        .form-textarea {
+            width: 100%;
+            padding: 1.1rem 1.1rem 1rem 1.1rem;
+            border: 1.5px solid var(--border-color);
+            border-radius: 10px;
+            background: var(--input-bg);
+            font-size: 1rem;
+            color: var(--text-primary);
+            font-family: inherit;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        .form-input:focus,
+        .form-select:focus,
+        .form-textarea:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 2px #6366f120;
+            background: #fff;
+            outline: none;
+        }
+
+        .form-textarea {
+            min-height: 90px;
+            resize: vertical;
+        }
+
+        .photo-preview {
+            width: 110px;
+            height: 110px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--primary-color);
+            display: none;
+            margin-bottom: 0.5rem;
+        }
+
+        .radio-group {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .radio-group label {
+            font-weight: 500;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.04rem;
+        }
+
+        .radio-group input[type="radio"] {
+            accent-color: var(--primary-color);
+        }
+
+        .conditional-section {
+            display: none;
+            animation: fadeIn 0.3s;
+            margin-top: 1rem;
+        }
+
+        .conditional-section.active {
+            display: block;
+        }
+
+        .map-container {
+            height: 220px;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1.5px solid var(--border-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .submit-btn {
+            background: var(--gradient-primary, linear-gradient(90deg, #6366f1 0%, #8b5cf6 100%));
+            color: #fff;
+            border: none;
+            padding: 1.1rem 0;
+            font-size: 1.1rem;
+            font-weight: 700;
+            border-radius: 12px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 0.4rem;
+            box-shadow: 0 2px 12px 0 rgba(99, 102, 241, 0.07);
+            letter-spacing: 0.5px;
+            transition: background 0.2s, transform 0.1s;
+        }
+
+        .submit-btn:hover,
+        .submit-btn:focus {
+            background: var(--gradient-secondary, linear-gradient(90deg, #06b6d4 0%, #8b5cf6 100%));
+            transform: translateY(-2px) scale(1.01);
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .register-form-wrapper {
+                padding: 1.2rem 0.5rem;
+                border-radius: 0;
+                box-shadow: none;
+            }
+
+            .register-main {
+                padding: 1rem 0;
+            }
+        }
+    </style>
+
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <i class="fas fa-heart"></i>
+                <span>Ajuda.ai</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">Início</a></li>
+                <li><a href="voluntarios.html">Quem ajuda</a></li>
+                <li><a href="precisa.html">Quem precisa</a></li>
+                <li><a href="cadastro.html" class="active">Cadastro</a></li>
+            </ul>
+        </div>
+    </nav>
+    <main class="register-main">
+        <div class="register-form-wrapper">
+            <h1 class="register-title">Cadastro</h1>
+            <p class="register-desc">Preencha os dados abaixo para participar da rede Ajuda.ai</p>
+            <form class="register-form" id="registrationForm" autocomplete="off" novalidate>
+                <div class="form-group">
+                    <input type="text" id="fullName" name="fullName" class="form-input" placeholder=" " required>
+                    <label for="fullName" class="form-label"><i class="fas fa-user"></i> Nome completo</label>
+                </div>
+                <div class="form-group">
+                    <input type="file" id="photo" name="photo" class="form-input" accept="image/*">
+                    <label for="photo" class="form-label"><i class="fas fa-camera"></i> Foto</label>
+                    <img id="photoPreview" class="photo-preview" alt="Pré-visualização da foto" />
+                </div>
+                <div class="form-group">
+                    <div id="map" class="map-container"></div>
+                    <input type="hidden" id="latitude" name="latitude">
+                    <input type="hidden" id="longitude" name="longitude">
+                    <label for="map" class="form-label"
+                        style="top:-1.1rem; left:0.8rem; font-size:0.85rem; color:var(--primary-color); background:#fff;"><i
+                            class="fas fa-map-marker-alt"></i> Clique no mapa para marcar sua localização</label>
+                </div>
+                <div class="form-group">
+                    <div class="radio-group">
+                        <label><input type="radio" name="category" value="needHelp" required> Precisa de ajuda</label>
+                        <label><input type="radio" name="category" value="canHelp"> Pode oferecer ajuda</label>
+                    </div>
+                </div>
+                <div id="canHelpFields" class="conditional-section">
+                    <div class="form-group">
+                        <input type="text" id="profession" name="profession" class="form-input" placeholder=" ">
+                        <label for="profession" class="form-label"><i class="fas fa-briefcase"></i> Profissão</label>
+                    </div>
+                    <div class="form-group">
+                        <textarea id="workDescription" name="workDescription" class="form-textarea"
+                            placeholder=" "></textarea>
+                        <label for="workDescription" class="form-label"><i class="fas fa-info-circle"></i> Descrição
+                            sobre o trabalho</label>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="availability" name="availability" class="form-input" placeholder=" ">
+                        <label for="availability" class="form-label"><i class="fas fa-clock"></i> Horários
+                            disponíveis</label>
+                    </div>
+                </div>
+                <div id="needHelpFields" class="conditional-section">
+                    <div class="form-group">
+                        <textarea id="problemDescription" name="problemDescription" class="form-textarea"
+                            placeholder=" "></textarea>
+                        <label for="problemDescription" class="form-label"><i class="fas fa-question-circle"></i>
+                            Descrição do problema ou necessidade</label>
+                    </div>
+                </div>
+                <button type="submit" class="submit-btn">Enviar Cadastro</button>
+            </form>
+        </div>
+    </main>
+    <footer class="footer">
+        <!-- ... seu footer existente ... -->
+    </footer>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script>
+        // Mapa interativo Leaflet
+        const map = L.map('map').setView([-22.1256, -51.3895], 13);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '© OpenStreetMap contributors'
+        }).addTo(map);
+        let marker;
+        map.on('click', function (e) {
+            const { lat, lng } = e.latlng;
+            if (marker) {
+                marker.setLatLng(e.latlng);
+            } else {
+                marker = L.marker(e.latlng).addTo(map);
+            }
+            document.getElementById('latitude').value = lat;
+            document.getElementById('longitude').value = lng;
+        });
+        // Preview da foto
+        const photoInput = document.getElementById('photo');
+        const photoPreview = document.getElementById('photoPreview');
+        photoInput.addEventListener('change', function () {
+            const file = this.files && this.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    photoPreview.src = e.target.result;
+                    photoPreview.style.display = 'block';
+                };
+                reader.readAsDataURL(file);
+            } else {
+                photoPreview.src = '';
+                photoPreview.style.display = 'none';
+            }
+        });
+        // Campos condicionais
+        const categoryRadios = document.querySelectorAll('input[name="category"]');
+        const canHelpFields = document.getElementById('canHelpFields');
+        const needHelpFields = document.getElementById('needHelpFields');
+        function updateConditionalFields() {
+            const selected = document.querySelector('input[name="category"]:checked');
+            if (selected) {
+                if (selected.value === 'canHelp') {
+                    canHelpFields.classList.add('active');
+                    needHelpFields.classList.remove('active');
+                    document.getElementById('profession').required = true;
+                    document.getElementById('workDescription').required = true;
+                    document.getElementById('availability').required = true;
+                    document.getElementById('problemDescription').required = false;
+                } else {
+                    needHelpFields.classList.add('active');
+                    canHelpFields.classList.remove('active');
+                    document.getElementById('problemDescription').required = true;
+                    document.getElementById('profession').required = false;
+                    document.getElementById('workDescription').required = false;
+                    document.getElementById('availability').required = false;
+                }
+            }
+        }
+        categoryRadios.forEach(radio => {
+            radio.addEventListener('change', updateConditionalFields);
+        });
+        // Validação e envio
+        const form = document.getElementById('registrationForm');
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();
+            if (!form.checkValidity()) {
+                form.reportValidity();
+                return;
+            }
+            alert('Cadastro enviado com sucesso!');
+            form.reset();
+            photoPreview.style.display = 'none';
+            canHelpFields.classList.remove('active');
+            needHelpFields.classList.remove('active');
+            if (marker) {
+                map.removeLayer(marker);
+                marker = null;
+            }
+        });
+    </script>
+</body>
+
+</html>

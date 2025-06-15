@@ -98,6 +98,9 @@ body {
 .nav-menu a:hover::after {
     width: 100%;
 }
+.nav-menu a.active::after {
+    width: 100%;
+}
 
 .hamburger {
     display: none;
@@ -1653,5 +1656,188 @@ body {
         flex-direction: column;
         align-items: flex-start;
         gap: 0.5rem;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/* Seção de Patrocinadores */
+.sponsors-section {
+    padding: 4rem 0;
+    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.sponsors-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="sponsorGrid" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M 20 0 L 0 0 0 20" fill="none" stroke="rgba(99,102,241,0.03)" stroke-width="1"/></pattern></defs><rect width="100" height="100" fill="url(%23sponsorGrid)"/></svg>');
+    opacity: 0.5;
+}
+
+.sponsors-section .container {
+    position: relative;
+    z-index: 1;
+}
+
+.sponsors-carousel-wrapper {
+    position: relative;
+    overflow: hidden;
+    border-radius: 16px;
+    background: white;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    padding: 2rem 0;
+}
+
+/* Efeito de desfoque nas bordas */
+.sponsors-carousel-wrapper::before,
+.sponsors-carousel-wrapper::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    width: 100px;
+    height: 100%;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.sponsors-carousel-wrapper::before {
+    left: 0;
+    background: linear-gradient(to right, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 100%);
+}
+
+.sponsors-carousel-wrapper::after {
+    right: 0;
+    background: linear-gradient(to left, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 100%);
+}
+
+/* Animação do carrossel infinito */
+@keyframes infiniteScroll {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+.sponsors-track {
+    display: flex;
+    animation: infiniteScroll 30s linear infinite;
+    width: calc(220px * 16); /* 8 slides originais + 8 duplicados */
+}
+
+.sponsor-slide {
+    min-width: 220px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    margin: 0 10px;
+    background: #f8fafc;
+    border-radius: 12px;
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.sponsor-slide:hover {
+    border-color: var(--primary-color);
+    background: white;
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(99, 102, 241, 0.15);
+}
+
+.sponsor-logo {
+    max-width: 180px;
+    max-height: 80px;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    filter: grayscale(100%) opacity(0.7);
+    transition: all 0.3s ease;
+}
+
+.sponsor-slide:hover .sponsor-logo {
+    filter: grayscale(0%) opacity(1);
+    transform: scale(1.05);
+}
+
+/* Pausar animação ao passar o mouse (opcional) */
+.sponsors-track:hover {
+    animation-play-state: paused;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .sponsors-track {
+        animation-duration: 25s;
+    }
+    
+    .sponsor-slide {
+        min-width: 200px;
+    }
+    
+    .sponsor-logo {
+        max-width: 160px;
+        max-height: 70px;
+    }
+}
+
+@media (max-width: 768px) {
+    .sponsors-section {
+        padding: 3rem 0;
+    }
+    
+    .sponsors-carousel-wrapper {
+        margin: 0 1rem;
+        padding: 1.5rem 0;
+    }
+    
+    .sponsors-track {
+        animation-duration: 20s;
+    }
+    
+    .sponsor-slide {
+        min-width: 180px;
+        margin: 0 5px;
+    }
+    
+    .sponsor-logo {
+        max-width: 140px;
+        max-height: 60px;
+    }
+    
+    .sponsors-carousel-wrapper::before,
+    .sponsors-carousel-wrapper::after {
+        width: 50px;
+    }
+}
+
+@media (max-width: 480px) {
+    .sponsor-slide {
+        min-width: 160px;
+    }
+    
+    .sponsor-logo {
+        max-width: 120px;
+        max-height: 50px;
+    }
+    
+    .sponsors-track {
+        animation-duration: 15s;
     }
 }
