@@ -16,6 +16,12 @@
     </a>
   </p>
 
+  <p>🗺️ <strong>Acesse o protótipo online:</strong>  
+    <a href="https://excalidraw.com/#room=717f2493f9a48cd79b77,HeR8AOKOz0uOUBhVxgnh8A" target="_blank">
+      https://excalidraw.com/#room=717f2493f9a48cd79b77,HeR8AOKOz0uOUBhVxgnh8A
+    </a>
+  </p>
+
   <img src="https://github.com/user-attachments/assets/57d7ccc9-7f29-442d-acf2-a4382e15f03a" alt="Ajuda.ai Screenshot" style="width: 100%; height: auto; margin: 20px 0;">
 
   <h2>📌 Funcionalidades</h2>
