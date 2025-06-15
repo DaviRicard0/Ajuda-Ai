@@ -10,7 +10,7 @@
 
   <p><strong>Ajuda.ai</strong> é uma plataforma digital voltada para impacto social, que conecta pessoas dispostas a oferecer ajuda voluntária com aquelas que realmente precisam de apoio na sua comunidade.</p>
 
-  <img src="https://via.placeholder.com/800x400?text=Ajuda.ai+Preview" alt="Ajuda.ai Screenshot" style="width: 100%; height: auto; margin: 20px 0;">
+  <img src="https://github.com/user-attachments/assets/57d7ccc9-7f29-442d-acf2-a4382e15f03a" alt="Ajuda.ai Screenshot" style="width: 100%; height: auto; margin: 20px 0;">
 
   <h2>📌 Funcionalidades</h2>
   <ul>
