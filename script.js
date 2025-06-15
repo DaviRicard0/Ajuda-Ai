@@ -224,11 +224,11 @@ document.querySelectorAll('.btn-contact').forEach(button => {
 
 // Hero buttons functionality
 document.querySelector('.btn-primary').addEventListener('click', () => {
-    alert('Redirecionando para cadastro de voluntário...');
+    window.location.href= "/precisa.html"
 });
 
 document.querySelector('.btn-secondary').addEventListener('click', () => {
-    alert('Redirecionando para solicitação de ajuda...');
+    window.location.href= "/voluntarios.html"
 });
 
 // Add loading animation
@@ -377,6 +377,17 @@ document.addEventListener('keydown', function(e) {
         closeFatalError();
     }
 });
+
+
+
+
+
+
+
+
+
+
+
 
 // Carrossel de Patrocinadores
 document.addEventListener('DOMContentLoaded', function() {

@@ -1,22 +1,24 @@
 :root {
-    --primary-color: #6366f1;
-    --secondary-color: #8b5cf6;
-    --accent-color: #06b6d4;
-    --success-color: #10b981;
-    --warning-color: #f59e0b;
+    --primary-color: #32BAAD;
+    --secondary-color: #134B6C;
+    --accent-color: #FEA231;
+    --success-color: #10b981;      /* ajuste se quiser um verde diferente */
+    --warning-color: #FEA231;      /* usa a cor de contraste para alertas */
     --danger-color: #ef4444;
-    --dark-color: #1f2937;
+    --dark-color: #134B6C;         /* usa a cor secundária para tons escuros */
     --light-color: #f8fafc;
-    --text-primary: #1e293b;
-    --text-secondary: #64748b;
-    --border-color: #e2e8f0;
+    --text-primary: #134B6C;       /* cor secundária para texto principal */
+    --text-secondary: #32BAAD;     /* cor primária para texto secundário */
+    --border-color: #32BAAD;       /* cor primária para bordas */
     --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
     --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
     --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
     --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1);
-    --gradient-primary: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
-    --gradient-secondary: linear-gradient(135deg, #06b6d4 0%, #10b981 100%);
+    --gradient-primary: linear-gradient(135deg, #32BAAD 0%, #134B6C 100%);
+    --gradient-secondary: linear-gradient(135deg, #FEA231 0%, #32BAAD 100%);
+    --bg-white :#fff
 }
+
 
 * {
     margin: 0;
@@ -120,7 +122,7 @@ body {
 /* Hero Section Atualizado */
 .hero {
     min-height: 100vh;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: var(--gradient-primary);
     display: flex;
     align-items: center;
     position: relative;
@@ -248,28 +250,6 @@ body {
     box-shadow: var(--shadow-lg);
 }
 
-.hero-stats {
-    display: flex;
-    gap: 2rem;
-}
-
-.stat {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.stat-number {
-    font-size: 2rem;
-    font-weight: 700;
-    color: white;
-}
-
-.stat-label {
-    font-size: 0.9rem;
-    color: rgba(255, 255, 255, 0.8);
-}
-
 /* Nova seção do mapa */
 .hero-map-section {
     display: flex;
@@ -299,6 +279,10 @@ body {
     width: 100%;
     height: 100%;
     border-radius: 20px;
+}
+
+.distance-badge {
+    margin-left: auto;
 }
 
 .map-overlay {
@@ -1551,23 +1535,7 @@ body {
     margin-bottom: 1.5rem;
 }
 
-.rating-section {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    margin-bottom: 1rem;
-}
 
-.rating-stars {
-    display: flex;
-    align-items: center;
-    gap: 0.25rem;
-}
-
-.rating-stars i {
-    color: #fbbf24;
-    font-size: 0.9rem;
-}
 
 .rating-number {
     font-weight: 600;
@@ -1580,22 +1548,6 @@ body {
     font-size: 0.85rem;
 }
 
-.specialties {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    margin-bottom: 1rem;
-}
-
-.specialty-tag {
-    background: rgba(99, 102, 241, 0.1);
-    color: var(--primary-color);
-    padding: 0.25rem 0.75rem;
-    border-radius: 12px;
-    font-size: 0.8rem;
-    font-weight: 500;
-    border: 1px solid rgba(99, 102, 241, 0.2);
-}
 
 .volunteer-description {
     color: var(--text-secondary);
@@ -1841,3 +1793,207 @@ body {
         animation-duration: 15s;
     }
 }
+
+
+
+
+
+
+
+
+
+        
+
+        .register-main {
+            min-height: 100vh;
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            padding: 3rem 0 2rem 0;
+            background: var(--bg-white);
+        }
+
+        .register-form-wrapper {
+            width: 100%;
+            max-width: 480px;
+            margin: 0 auto;
+            padding: 2.5rem 2rem 2rem 2rem;
+            border-radius: 24px;
+            background: var(--bg-white);
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .register-title {
+            font-size: 2.3rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-align: center;
+            margin-bottom: 0.5rem;
+            letter-spacing: -1px;
+        }
+
+        .register-desc {
+            text-align: center;
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            font-size: 1.05rem;
+        }
+
+        .register-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.4rem;
+        }
+
+        .form-group {
+            position: relative;
+            margin-bottom: 0.5rem;
+        }
+
+        .form-label {
+            position: absolute;
+            left: 1.1rem;
+            top: 1.1rem;
+            color: var(--text-secondary);
+            font-size: 1rem;
+            pointer-events: none;
+            background: var(--bg-white);
+            padding: 0 0.3rem;
+            transition: 0.2s;
+            z-index: 2;
+        }
+
+        .form-input:focus+.form-label,
+        .form-input:not(:placeholder-shown)+.form-label,
+        .form-input[type="file"]:valid+.form-label,
+        .form-textarea:focus+.form-label,
+        .form-textarea:not(:placeholder-shown)+.form-label {
+            top: -0.7rem;
+            left: 0.8rem;
+            font-size: 0.85rem;
+            color: var(--primary-color);
+            background: var(--bg-white);
+        }
+
+        .form-input,
+        .form-select,
+        .form-textarea {
+            width: 100%;
+            padding: 1.1rem 1.1rem 1rem 1.1rem;
+            border: 1.5px solid var(--border-color);
+            border-radius: 10px;
+            background: var(--input-bg);
+            font-size: 1rem;
+            color: var(--text-primary);
+            font-family: inherit;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        .form-input:focus,
+        .form-select:focus,
+        .form-textarea:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 2px #6366f120;
+            background: #fff;
+            outline: none;
+        }
+
+        .form-textarea {
+            min-height: 90px;
+            resize: vertical;
+        }
+
+        .photo-preview {
+            width: 110px;
+            height: 110px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--primary-color);
+            display: none;
+            margin-bottom: 0.5rem;
+        }
+
+        .radio-group {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .radio-group label {
+            font-weight: 500;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.04rem;
+        }
+
+        .radio-group input[type="radio"] {
+            accent-color: var(--primary-color);
+        }
+
+        .conditional-section {
+            display: none;
+            animation: fadeIn 0.3s;
+            margin-top: 1rem;
+        }
+
+        .conditional-section.active {
+            display: block;
+        }
+
+        .map-container {
+            max-height: 100%;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1.5px solid var(--border-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .submit-btn {
+            background: var(--gradient-primary, linear-gradient(90deg, #6366f1 0%, #8b5cf6 100%));
+            color: #fff;
+            border: none;
+            padding: 1.1rem 0;
+            font-size: 1.1rem;
+            font-weight: 700;
+            border-radius: 12px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 0.4rem;
+            box-shadow: 0 2px 12px 0 rgba(99, 102, 241, 0.07);
+            letter-spacing: 0.5px;
+            transition: background 0.2s, transform 0.1s;
+        }
+
+        .submit-btn:hover,
+        .submit-btn:focus {
+            background: var(--gradient-secondary, linear-gradient(90deg, #06b6d4 0%, #8b5cf6 100%));
+            transform: translateY(-2px) scale(1.01);
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .register-form-wrapper {
+                padding: 1.2rem 0.5rem;
+                border-radius: 0;
+                box-shadow: none;
+            }
+
+            .register-main {
+                padding: 1rem 0;
+            }
+        }
