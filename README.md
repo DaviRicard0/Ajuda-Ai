@@ -22,7 +22,7 @@
     </a>
   </p>
 
-  <img src="https://github.com/user-attachments/assets/57d7ccc9-7f29-442d-acf2-a4382e15f03a" alt="Ajuda.ai Screenshot" style="width: 100%; height: auto; margin: 20px 0;">
+  <img src="https://github.com/user-attachments/assets/89385a11-0e09-4305-89da-db95bb3710bc" alt="Ajuda.ai Screenshot" style="width: 100%; height: auto; margin: 20px 0;">
 
   <h2>📌 Funcionalidades</h2>
   <ul>
